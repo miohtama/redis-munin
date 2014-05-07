@@ -8,16 +8,24 @@ It can monitor several Redis instances, remotes or locals to the server.
 To install : just copy the redis_ script to your $MUNIN_LIBDIR
 (on Debian, that's /usr/share/munin/plugins/).
 
-Then create a symbolic link like this:
+Quick installation instructions:
 
-  ln -s '/usr/share/munin/plugins/redis_' \
-        '/etc/munin/plugins/redis_127.0.0.1_6379'
+    cd /usr/share/munin/plugins
+    wget https://raw.githubusercontent.com/bpineau/redis-munin/master/redis_
+    chmod a+rx redis_
+    ln -s '/usr/share/munin/plugins/redis_' '/etc/munin/plugins/redis'
+    munin-run redis
+    service munin-node restart
 
 Or let "munin-node-configure --shell | bash" do it for you.
 
 To monitor remote servers (or monitor local Redis instances listening
 on non-defaults ports), create a symbolic link accordingly, ie. :
 /etc/munin/plugins/redis_remoteserverip_remoteserverport
+
+   ln -s '/usr/share/munin/plugins/redis_' \
+        '/etc/munin/plugins/redis_127.0.0.1_6379'
+
 
 Passwords can be set in a config file ala /etc/munin/plugin-conf.d/redis:
 
